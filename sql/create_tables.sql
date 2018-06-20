@@ -27,10 +27,9 @@ CREATE TABLE IF NOT EXISTS appointment (
        emergency_level integer NOT NULL CHECK (emergency_level > 0 AND emergency_level < 11),
        schedule tsrange NOT NULL,
        done BOOLEAN DEFAULT FALSE,
+       area GEOMETRY(Point, 4326),
+
        EXCLUDE USING GIST (crocodile_id WITH =, schedule WITH &&),
-
-       -- position (todo)
-
        CONSTRAINT appointment_pkey PRIMARY KEY (id)
 );
 
